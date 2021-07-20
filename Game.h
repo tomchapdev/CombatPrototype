@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+#include "SFML/Graphics.hpp"
+
 
 //dimensions in 2D as int
 struct Dim2Di
@@ -26,13 +29,41 @@ namespace GC
 	const float PLAYER_SPEED = 16.f;
 	const int ENEMY_HEALTH = 1;
 	const float ENEMY_SPEED = 16.f;
+	const int ROOM_SIZE = 16;
+	const int TILESIZE = 16;
+}
+
+namespace BuiltRooms
+{
+	int startRoom[GC::ROOM_SIZE][GC::ROOM_SIZE] = {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+													{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
 }
 
 struct Player
 {
 	int health = GC::PLAYER_HEALTH;
 	float speed = GC::PLAYER_SPEED;
+
+	void Movement();
 };
+
+void Player::Movement()
+{
+
+}
 
 struct Enemy
 {
@@ -40,3 +71,36 @@ struct Enemy
 	int health = GC::ENEMY_HEALTH;
 	float speed = GC::ENEMY_SPEED;
 };
+
+struct Room
+{
+	int tilemap[GC::ROOM_SIZE][GC::ROOM_SIZE];
+	vector<Enemy> enemies;
+};
+
+struct Tile
+{
+	//int left, right, x, y;
+	sf::Texture *pT;
+	sf::IntRect rect = {};
+	int ID;
+};
+
+struct Map
+{
+	vector<Tile> tiles;
+	vector<Room> rooms;
+
+	void Init();
+};
+
+void Map::Init()
+{
+	tiles.insert(tiles.begin(), 16, Tile());
+	for (int i = 0; i < tiles.size(); i++)
+	{
+		tiles[i].pT = 
+	}
+}
+
+bool LoadTexture(const string& file, Texture& tex);
