@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <string>
+#include <vector>
 #include "Game.h"
 #include "SFML/Graphics.hpp"
 
@@ -14,7 +15,11 @@ int main()
 	Clock clock;
 
 	Map gameMap;
+	gameMap.rooms.push_back(4, Room());
+	gameMap.spritesheet.create(512, 512);
+	gameMap.spritesheet.loadFromFile((string)("data\spritesheet.png"));
 	gameMap.Init();
+	gameMap.GenerateMap();
 
 	// Start the game loop 
 	while (window.isOpen())
