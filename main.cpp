@@ -13,6 +13,9 @@ int main()
 	window.setFramerateLimit(GC::FRAMERATE_MAX);
 	Clock clock;
 
+	Map gameMap;
+	gameMap.Init();
+
 	// Start the game loop 
 	while (window.isOpen())
 	{
